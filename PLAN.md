@@ -2346,7 +2346,7 @@ git push origin main
   - [x] Task 4: Authentication System
 - [ ] Phase 2: Core API Routers
   - [x] Task 5: Workspace Router
-  - [ ] Task 6: Website Router
+  - [x] Task 6: Website Router
   - [ ] Task 7: Feedback Router
 - [ ] Phase 3: Frontend
   - [ ] Task 8: Frontend Setup
