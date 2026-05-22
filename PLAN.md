@@ -2351,8 +2351,8 @@ git push origin main
 - [x] Phase 3: Frontend
   - [x] Task 8: Frontend Setup
   - [x] Task 9: Frontend Core Components
-- [ ] Phase 4: Widget
-  - [ ] Task 10: Feedback Widget
+- [x] Phase 4: Widget
+  - [x] Task 10: Feedback Widget
 - [ ] Phase 5: Docker & Documentation
   - [ ] Task 11: Docker Configuration
   - [ ] Task 12: Documentation

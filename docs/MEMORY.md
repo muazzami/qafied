@@ -81,7 +81,15 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - `src/App.tsx` — `QueryClientProvider` + `BrowserRouter` with /login, /register, / (protected) routes; unknown paths redirect to /
 
 ### Phase 4: Widget
-- [ ] Task 10: Feedback Widget
+- [x] **Task 10: Feedback Widget** — completed
+  - `widget/src/qafied.ts` — IIFE bundle. Reads `data-key` from `document.currentScript`, fetches `/widget/config?key=...`, activates if `show_by_default` or URL has `?feedback=on`.
+  - Behavior: floating 💬 button → click to enter "placement mode" (crosshair cursor) → next click on page creates a marker + opens modal with type/comment/screenshot checkbox/name/email fields.
+  - Detects browser (Chrome/Firefox/Safari/Edge) and OS (Windows/macOS/Linux/iOS/Android) from `navigator.userAgent`.
+  - Builds a heuristic CSS selector for the clicked element (id-or-tag.class chain, max depth 4).
+  - Persists commenter name/email in localStorage (`qafied:commenter`) so the next comment prefills.
+  - Screenshot via `html2canvas`; bundle uses rollup w/ terser (`widget/rollup.config.js`).
+  - `widget/Dockerfile` + `widget/nginx.conf` — builds the bundle, serves `/widget.js` with `Access-Control-Allow-Origin *` and 5-min cache.
+  - Fixed from the plan: avoided `showFeedbackModal` typo, skipped clicks on the widget UI itself, proper escape() of stored name/email, disable Submit button while in-flight.
 
 ### Phase 5: Docker & Documentation
 - [ ] Task 11: Docker Configuration
