@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app import models  # noqa: F401 — register models with Base.metadata
+from app.database import Base, engine
 from app.routers import auth, feedback, websites, widget, workspaces
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Qafied API", version="0.1.0")
 

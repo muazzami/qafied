@@ -92,7 +92,12 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - Fixed from the plan: avoided `showFeedbackModal` typo, skipped clicks on the widget UI itself, proper escape() of stored name/email, disable Submit button while in-flight.
 
 ### Phase 5: Docker & Documentation
-- [ ] Task 11: Docker Configuration
+- [x] **Task 11: Docker Configuration** — completed
+  - `docker-compose.yml` — services: db (postgres:15-alpine, with healthcheck), backend (waits for db healthy), frontend (nginx:80→80), widget (nginx→8080)
+  - Named volumes: `postgres_data` and `screenshots` (the latter mounted at `/app/screenshots` to persist uploaded images)
+  - Backend env wires `DATABASE_URL`, `SECRET_KEY`, `WIDGET_URL`, `SCREENSHOT_DIR`
+  - **Note: deviated from PLAN.md** — plan listed `docker/nginx.conf` as a top-level file, but nginx configs are now co-located (`frontend/nginx.conf`, `widget/nginx.conf`) since each Dockerfile has its own build context. No top-level `docker/` dir needed.
+  - **Bootstrap detail**: backend `main.py` calls `Base.metadata.create_all(bind=engine)` on import so tables exist on first run (plan didn't set up Alembic in Task 1). Migrate to Alembic before any production schema changes.
 - [ ] Task 12: Documentation
 
 ## Key Decisions
