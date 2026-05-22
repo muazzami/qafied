@@ -98,7 +98,10 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - Backend env wires `DATABASE_URL`, `SECRET_KEY`, `WIDGET_URL`, `SCREENSHOT_DIR`
   - **Note: deviated from PLAN.md** — plan listed `docker/nginx.conf` as a top-level file, but nginx configs are now co-located (`frontend/nginx.conf`, `widget/nginx.conf`) since each Dockerfile has its own build context. No top-level `docker/` dir needed.
   - **Bootstrap detail**: backend `main.py` calls `Base.metadata.create_all(bind=engine)` on import so tables exist on first run (plan didn't set up Alembic in Task 1). Migrate to Alembic before any production schema changes.
-- [ ] Task 12: Documentation
+- [x] **Task 12: Documentation** — completed
+  - `README.md` — overview, features, architecture, quick-start with docker-compose, widget embed instructions
+  - `docs/API.md` — REST endpoint reference for auth/workspaces/websites/feedback/widget
+  - `docs/MEMORY.md` — this file (per-task implementation notes)
 
 ## Key Decisions
 1. Multi-workspace support with role-based access (owner / admin / member)
