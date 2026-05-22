@@ -2349,7 +2349,7 @@ git push origin main
   - [x] Task 6: Website Router
   - [x] Task 7: Feedback Router
 - [ ] Phase 3: Frontend
-  - [ ] Task 8: Frontend Setup
+  - [x] Task 8: Frontend Setup
   - [ ] Task 9: Frontend Core Components
 - [ ] Phase 4: Widget
   - [ ] Task 10: Feedback Widget

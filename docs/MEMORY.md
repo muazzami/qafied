@@ -60,7 +60,14 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - `session_id` auto-generated server-side (uuid4) on each feedback submission
 
 ### Phase 3: Frontend
-- [ ] Task 8: Frontend Setup
+- [x] **Task 8: Frontend Setup** — completed
+  - `frontend/package.json` — React 18, react-router 6, axios, @tanstack/react-query, zustand, lucide-react, tailwind-merge, clsx
+  - `frontend/vite.config.ts`, `tsconfig.json`, `tsconfig.node.json`, `tailwind.config.js`, `postcss.config.js`
+  - `frontend/tailwind.config.js` — extended with shadcn-style HSL CSS-variable palette so future shadcn components work
+  - `frontend/src/index.css` — CSS vars for theme tokens, base layer applies `border-border` to all elements
+  - `frontend/src/main.tsx`, `App.tsx` — minimal landing page header
+  - `frontend/Dockerfile` — multi-stage: `node:20-alpine` build → `nginx:alpine` serve. Uses local `frontend/nginx.conf` (deviated from plan's `docker/nginx.conf` because the build context is `./frontend`)
+  - `frontend/nginx.conf` — SPA fallback (`try_files $uri /index.html`)
 - [ ] Task 9: Frontend Core Components
 
 ### Phase 4: Widget
