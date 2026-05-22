@@ -29,7 +29,12 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - `backend/app/models/website.py` — Website with `script_key` auto-generated via `secrets.token_urlsafe(32)`
   - `backend/app/models/feedback.py` — Feedback with `FeedbackType` + `FeedbackStatus` enums, JSON cols for browser/OS info
   - `backend/app/models/__init__.py` — re-exports all models and enums
-- [ ] Task 3: Pydantic Schemas
+- [x] **Task 3: Pydantic Schemas** — completed
+  - `backend/app/schemas/user.py` — UserBase/Create/Update/User, UserLogin, Token
+  - `backend/app/schemas/workspace.py` — Workspace + Create/Update, WorkspaceMemberInfo, MemberRole, WorkspaceInvite
+  - `backend/app/schemas/website.py` — Website + Create/Update, WebsiteScript (uses HttpUrl on input, str on response since model stores str)
+  - `backend/app/schemas/feedback.py` — FeedbackCreate (with BrowserInfo/OSInfo + screenshot_data base64), FeedbackResponse, Feedback, FeedbackGroup, FeedbackType + FeedbackStatus enums
+  - All response schemas use `from_attributes = True` for SQLAlchemy → Pydantic conversion
 - [ ] Task 4: Authentication System
 
 ### Phase 2: Core API Routers
