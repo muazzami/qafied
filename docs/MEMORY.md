@@ -68,7 +68,17 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - `frontend/src/main.tsx`, `App.tsx` — minimal landing page header
   - `frontend/Dockerfile` — multi-stage: `node:20-alpine` build → `nginx:alpine` serve. Uses local `frontend/nginx.conf` (deviated from plan's `docker/nginx.conf` because the build context is `./frontend`)
   - `frontend/nginx.conf` — SPA fallback (`try_files $uri /index.html`)
-- [ ] Task 9: Frontend Core Components
+- [x] **Task 9: Frontend Core Components** — completed
+  - `src/lib/api.ts` — axios client; reads `VITE_API_URL`, attaches Bearer token from localStorage, redirects to `/login` on 401 (only if not already there, to avoid redirect loops)
+  - `src/lib/utils.ts` — `cn()` for class merging (clsx + tailwind-merge)
+  - `src/types/index.ts` — TS types mirroring backend Pydantic schemas (User, Workspace, Website, Feedback)
+  - `src/store/auth.ts` — Zustand store with `login`/`register`/`logout`/`fetchUser`; token persisted in localStorage
+  - `src/store/workspace.ts` — Zustand store for `currentWorkspaceId`, persisted in localStorage
+  - `src/components/ui/` — Button, Input, Card, Label primitives (shadcn-style, manually authored without the CLI)
+  - `src/components/ProtectedRoute.tsx` — redirects to `/login` if no token; fetches user lazily
+  - `src/components/WorkspaceSwitcher.tsx` — React Query-driven select; auto-selects first workspace
+  - `src/pages/Login.tsx`, `Register.tsx`, `Dashboard.tsx` — auth pages and a minimal dashboard with switcher + logout
+  - `src/App.tsx` — `QueryClientProvider` + `BrowserRouter` with /login, /register, / (protected) routes; unknown paths redirect to /
 
 ### Phase 4: Widget
 - [ ] Task 10: Feedback Widget
