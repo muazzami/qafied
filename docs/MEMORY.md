@@ -21,7 +21,14 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - `backend/Dockerfile` — python:3.11-slim, installs gcc + libpq-dev for psycopg2, runs uvicorn on port 8000
   - `.env.example` — DATABASE_URL, SECRET_KEY, ACCESS_TOKEN_EXPIRE_MINUTES, FRONTEND_URL, WIDGET_URL
   - `.gitignore` — Python (__pycache__, .env, venv), Node (node_modules, dist), DB, IDE, OS
-- [ ] Task 2: Database Models
+- [x] **Task 2: Database Models** — completed
+  - `backend/app/database.py` — engine, `SessionLocal`, `Base`, `get_db()` dependency
+  - `backend/app/models/user.py` — User with `owned_workspaces` + `workspace_memberships` relationships
+  - `backend/app/models/workspace.py` — Workspace with owner/members/websites relationships
+  - `backend/app/models/workspace_member.py` — WorkspaceMember + `MemberRole` enum (owner/admin/member)
+  - `backend/app/models/website.py` — Website with `script_key` auto-generated via `secrets.token_urlsafe(32)`
+  - `backend/app/models/feedback.py` — Feedback with `FeedbackType` + `FeedbackStatus` enums, JSON cols for browser/OS info
+  - `backend/app/models/__init__.py` — re-exports all models and enums
 - [ ] Task 3: Pydantic Schemas
 - [ ] Task 4: Authentication System
 
