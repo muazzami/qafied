@@ -42,7 +42,11 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - `backend/app/main.py` — now includes `auth.router`
 
 ### Phase 2: Core API Routers
-- [ ] Task 5: Workspace Router
+- [x] **Task 5: Workspace Router** — completed
+  - `backend/app/services/workspace_service.py` — `WorkspaceService` with create/list/invite, `assert_member` helper, and `build_workspace_response` that joins WorkspaceMember+User to populate `full_name`/`email` in the response (the SQLAlchemy `workspace.members` relationship alone is insufficient since `WorkspaceMemberInfo` schema needs user fields)
+  - `backend/app/routers/workspaces.py` — POST `/workspaces`, GET `/workspaces`, GET `/workspaces/{id}`, POST `/workspaces/{id}/invite`. Owner is auto-added as OWNER member on create.
+  - Slug auto-generated from name with collision suffix (`-1`, `-2`, …)
+  - 3-member limit enforced server-side via `max_members` field
 - [ ] Task 6: Website Router
 - [ ] Task 7: Feedback Router
 
