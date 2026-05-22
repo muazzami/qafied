@@ -35,7 +35,11 @@ and visitors can place comments on specific areas. Admins manage feedback throug
   - `backend/app/schemas/website.py` — Website + Create/Update, WebsiteScript (uses HttpUrl on input, str on response since model stores str)
   - `backend/app/schemas/feedback.py` — FeedbackCreate (with BrowserInfo/OSInfo + screenshot_data base64), FeedbackResponse, Feedback, FeedbackGroup, FeedbackType + FeedbackStatus enums
   - All response schemas use `from_attributes = True` for SQLAlchemy → Pydantic conversion
-- [ ] Task 4: Authentication System
+- [x] **Task 4: Authentication System** — completed
+  - `backend/app/auth/utils.py` — bcrypt via passlib, JWT encode/decode via python-jose, configurable via `SECRET_KEY`/`ALGORITHM`/`ACCESS_TOKEN_EXPIRE_MINUTES` env vars; uses `datetime.now(timezone.utc)` (not deprecated `utcnow()`)
+  - `backend/app/auth/dependencies.py` — `HTTPBearer` security, `get_current_user` looks up by JWT `sub`, `get_current_active_user` adds is_active check
+  - `backend/app/routers/auth.py` — POST `/auth/register`, POST `/auth/login`, GET `/auth/me`. Note: imports model as `UserModel` to avoid name clash with `User` schema
+  - `backend/app/main.py` — now includes `auth.router`
 
 ### Phase 2: Core API Routers
 - [ ] Task 5: Workspace Router
