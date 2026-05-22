@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import auth, websites, workspaces
+from app.routers import auth, feedback, websites, widget, workspaces
 
 app = FastAPI(title="Qafied API", version="0.1.0")
 
@@ -16,6 +16,8 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(workspaces.router)
 app.include_router(websites.router)
+app.include_router(feedback.router)
+app.include_router(widget.router)
 
 
 @app.get("/health")
